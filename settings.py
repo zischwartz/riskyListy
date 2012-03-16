@@ -1,6 +1,6 @@
 # Django settings for riskyListy project.
 
-DEBUG = True
+DEBUG = True 
 TEMPLATE_DEBUG = DEBUG
 
 import os
@@ -127,10 +127,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'registration_defaults',
+    'registration',
     'interface',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 10
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

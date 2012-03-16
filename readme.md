@@ -1,3 +1,6 @@
+# Requirements
+ - django-registration-defaults
+ - django-registration
 
 Assuming you have django installed, start this by running
     
@@ -10,4 +13,6 @@ Next, to start the dev server, run
     python manage.py runserver
 
 and a placeholder should show up at http://127.0.0.1:8000/
+
+
 
