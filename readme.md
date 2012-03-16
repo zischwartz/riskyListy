@@ -3,7 +3,7 @@
  - django-registration-defaults
 
 First, get `pip` if you don't have it already. It allows you to install python modules super easily. To get it type:
-    easy_install pip
+     easy_install pip
 
 And then never, ever use easy_install again.
 
