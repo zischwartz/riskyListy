@@ -1,6 +1,15 @@
 # Requirements
+ - django
  - django-registration-defaults
- - django-registration
+
+First, get `pip` if you don't have it already. It allows you to install python modules super easily. To get it type:
+    easy_install pip
+
+And then never, ever use easy_install again.
+
+To install django-registration-defaults:
+    pip install django-registration-defaults
+
 
 Assuming you have django installed, start this by running
     
