@@ -18,4 +18,9 @@ from models import *
 
 def home(request):
     return render_to_response("home.html", locals() , context_instance=RequestContext(request))
-    # return HttpResponse('hallo')
+
+def getTeam(request, id):
+    team = get_object_or_404(Team, id=id)
+    # team_players = get_list_or_404(MyModel, )
+    return render_to_response("home.html", locals() , context_instance=RequestContext(request))
+

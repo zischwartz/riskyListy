@@ -1,10 +1,11 @@
 from django.db import models
+# from autoslug import AutoSlugField
 
 class Emailer(models.Model):
 	name = models.CharField(max_length=200)
 	netId = models.CharField(max_length=200)
 	image = models.CharField(max_length=200)
-
+        # slug = AutoSlugField(populate_from='name')
 	def __str__(self):
 		return self.name
 
@@ -17,7 +18,8 @@ class EmailAddress(models.Model):
 class Team(models.Model):
 	name = models.CharField(max_length=200)
 	manager = models.ForeignKey(Emailer)
-	def __str__(self):
+        # slug = AutoSlugField(populate_from='name')
+        def __str__(self):
 		return "%s %s" % (self.manager, self.name)
 
 class Player(models.Model):
