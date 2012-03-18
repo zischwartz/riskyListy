@@ -1,6 +1,8 @@
 from django.db import models
 # from autoslug import AutoSlugField
 
+from django.contrib.auth.models import User
+
 class Emailer(models.Model):
 	name = models.CharField(max_length=200)
 	netId = models.CharField(max_length=200)
@@ -17,7 +19,7 @@ class EmailAddress(models.Model):
 
 class Team(models.Model):
 	name = models.CharField(max_length=200)
-	manager = models.ForeignKey(Emailer)
+	manager = models.ForeignKey(User)
         # slug = AutoSlugField(populate_from='name')
         def __str__(self):
 		return "%s %s" % (self.manager, self.name)
