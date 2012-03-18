@@ -19,27 +19,36 @@ admin.site.register(models.EmailAddress, EmailAddressAdmin)
 
 
 
+class UserAdmin(admin.ModelAdmin):
+	list_display = ("name",)
+	ordering = ("name",)
+	search_fields = ("name",)
+
+admin.site.register(models.User, UserAdmin)
+
+
+
 class TeamAdmin(admin.ModelAdmin):
-	list_display = ("manager", "name")
-	ordering = ("manager",)
-	search_fields = ("manager",)
+	list_display = ("user", "name")
+	ordering = ("user",)
+	search_fields = ("user",)
 
 admin.site.register(models.Team, TeamAdmin)
 
 
 
 class PlayerAdmin(admin.ModelAdmin):
-	list_display = ("player", "team", "points")
+	list_display = ("emailer", "team", "points")
 	list_filter = ("team",)
-	ordering = ("team", "player")
-	search = ("team", "player")
+	ordering = ("team", "emailer")
+	search = ("team", "emailer")
 
 admin.site.register(models.Player, PlayerAdmin)
 
 
 
 class CategoryAdmin(admin.ModelAdmin):
-	list_display = ("name",)
+	list_display = ("name", "total")
 
 admin.site.register(models.Category, CategoryAdmin)
 
