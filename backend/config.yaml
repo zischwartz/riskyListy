@@ -1,0 +1,9 @@
+mail:
+#    mailbox_file: [./mbox-testbed]
+    mailbox_file: [./mbox-itp]
+    list_address: itp-students@lists.nyu.edu
+#    list_address: itp@boxysean.com
+    last_check_file: lastCheck
+
+sqlite_db: ../db-testbed
+
