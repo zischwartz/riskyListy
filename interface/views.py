@@ -38,7 +38,7 @@ def addPlayer(request, id):
     if request.user.is_authenticated():
         team = get_object_or_404(Team, user=request.user)
         emailer_to_add = get_object_or_404(Emailer, id=id)
-        new_player = Player.objects.create(team=team, player=emailer_to_add, points= 0) # Points should be 0 when they're first added no matter what, right?
+        new_player = Player.objects.create(team=team, emailer=emailer_to_add, points= 0) # Points should be 0 when they're first added no matter what, right?
         return HttpResponseRedirect('/edit')
     else:
         return HttpResponse('error yo')
