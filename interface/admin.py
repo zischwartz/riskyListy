@@ -64,21 +64,31 @@ admin.site.register(models.Category, CategoryAdmin)
 
 
 
-class EmailerPointRankingAdmin(admin.ModelAdmin):
-	list_display = ("emailer", "category", "type", "points")
-	list_filter = ("type",)
-	ordering = ("emailer", "category", "type")
-	search = ("emailer", "category", "type")
+class EmailerPointsAdmin(admin.ModelAdmin):
+	list_display = ("emailer", "category", "points")
+	list_filter = ("emailer", "category")
+	ordering = ("emailer", "category")
+	search = ("emailer", "category")
 
-admin.site.register(models.EmailerPointRanking, EmailerPointRankingAdmin)
+admin.site.register(models.EmailerPoints, EmailerPointsAdmin)
 
 
 
-class TeamPointRankingAdmin(admin.ModelAdmin):
-	list_display = ("team", "category", "type", "points")
-	list_filter = ("type",)
-	ordering = ("team", "category", "type")
-	search = ("team", "category", "type")
+class TeamPointsAdmin(admin.ModelAdmin):
+	list_display = ("team", "category", "points")
+	list_filter = ("team", "category")
+	ordering = ("team", "category")
+	search = ("team", "category")
 
-admin.site.register(models.TeamPointRanking, TeamPointRankingAdmin)
+admin.site.register(models.TeamPoints, TeamPointsAdmin)
+
+
+
+class TeamScoreAdmin(admin.ModelAdmin):
+	list_display = ("team", "category", "score")
+	list_filter = ("team", "category")
+	ordering = ("team", "category")
+	search = ("team", "category")
+
+admin.site.register(models.TeamScore, TeamScoreAdmin)
 

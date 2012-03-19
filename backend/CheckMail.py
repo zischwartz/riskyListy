@@ -22,8 +22,15 @@ praiseCreatorProg = re.compile("you\\s+are\\s+the\\s+best[ ,.]+(sean|zach|sheiva
 
 def insertEntry(timestamp, mailfrom, subject, category, points, awardTo):
 	c = conn.cursor()
-	res = c.execute("insert into email_points values (?, ?, ?, ?, ?, ?)", (timestamp, mailfrom, subject, category, points, awardTo))
-	conn.commit()
+	c.execute("select emailer_id from interface_emailaddress where emailAddress = ?", (awardTo,))
+	awardToId = -1
+	for res in c:
+		awardToId = res[0]
+	if awardToId:
+		c.execute("insert into email_points values (?, ?, ?, ?, ?, ?)", (timestamp, mailfrom, subject, category, points, awardToId))
+		conn.commit()
+	else:
+		print "### WARNING: Could not find entry for email address %s ###" % awardTo
 	c.close()
 
 def checkThankYou(timestamp, mailfrom, subject, lines, category_id):
@@ -114,7 +121,7 @@ c.execute("""
         subject char(128) not null,
         category int not null,
         points int not null,
-        awardTo char(128) not null
+        awardTo int not null
     )
 """)
 
