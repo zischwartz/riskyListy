@@ -5,6 +5,27 @@
 </head>
 
 <body>
+  <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+            <div class="container">
+              <a class="brand" href="/">
+                <img src="{{STATIC_URL}}img/logo.gif" alt="RiskyListy" />
+                 </a>
+             <ul class="nav pull-right">
+               {%if not user.is_authenticated %}
+               <li> <a href="/accounts/login/">Login </a></li>
+               <li> <a href="/accounts/register/">Register </a></li>
+               {% else %} 
+               <li> <a href="/edit">Your Team </a></li>
+               <li> <a href="/teams"> Other Teams </a></li>
+               <li> <a href="/emailers"> List All Emailers </a></li>
+               {% endif %}
+             <ul>
+                   
+            </div>
+        </div>
+  </div>
+  <br><br><br><br> <br> <br><br> <br> 
   <div class="container">
     {% block content %}
     {%endblock %}

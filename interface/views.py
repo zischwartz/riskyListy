@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.utils import simplejson
 
+from datetime import datetime
 import settings
 from models import *
 
@@ -21,6 +22,7 @@ def home(request):
         return HttpResponseRedirect('/edit')
     return render_to_response("home.html", locals() , context_instance=RequestContext(request))
 
+# we'll let people see other teams, yes?
 def getTeam(request, id):
     team = get_object_or_404(Team, id=id)
     # team_players = get_list_or_404(MyModel, )
@@ -38,6 +40,7 @@ def addPlayer(request, id):
     if request.user.is_authenticated():
         team = get_object_or_404(Team, user=request.user)
         emailer_to_add = get_object_or_404(Emailer, id=id)
+        new_transaction = PlayerTransaction.objects.create(timestamp= datetime.now(), team=team, emailer = emailer_to_add, points=1 ) # points should be what ??! 
         new_player = Player.objects.create(team=team, emailer=emailer_to_add, points= 0) # Points should be 0 when they're first added no matter what, right?
         return HttpResponseRedirect('/edit')
     else:
@@ -49,6 +52,7 @@ def removePlayer(request, id):
         team = get_object_or_404(Team, user=request.user)
         team_players = get_list_or_404(Player, team=team )
         player_to_remove = get_object_or_404(Player, id=id)
+        new_transaction = PlayerTransaction.objects.create(timestamp= datetime.now(), team=team, emailer = player_to_remove.emailer, points=0 ) # Points should be 0 here? 
         if player_to_remove in team_players:
             player_to_remove.delete()
             return HttpResponseRedirect('/edit')

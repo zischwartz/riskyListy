@@ -1,1 +1,22 @@
 /* put some styles here yo! */
+
+.navbar img
+{
+  height: 90px; 
+}
+
+.navbar-inner
+{
+  background: none;
+  background-color: white !important;
+}
+
+.navbar a
+{
+  color: black;
+}
+
+.navbar a:hover
+{
+  color: black !important;
+}

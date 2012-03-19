@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{%block content %}
+  <h1> Your Rival Teams </h1>
+  {% for emailer in object_list %}
+  <p>
+  <a href="/team/{{emailer.id}}">{{emailer}}</a>
+  </p>
+  {%endfor%}
+  
+
+{%endblock%}
