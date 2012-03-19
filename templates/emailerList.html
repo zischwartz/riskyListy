@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{%block content %}
+  <h1> Roster of Emailers </h1>
+  {% for emailer in object_list %}
+  <p>
+  <a href="/emailer/{{emailer.id}}">{{emailer}}</a>
+  </p>
+  {%endfor%}
+  
+
+{%endblock%}

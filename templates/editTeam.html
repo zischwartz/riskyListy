@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Manage {{team.name}}</h1>
+  <br>
+  <h3> Players On This  Team </h3>
+  <ul>
+  {% for player in team.player_set.all %}
+    <li> {{player.name}} : {{player.points}} points
+      <ul>
+        {% for  rank in  player.emailer.emailerpointranking_set.all %} 
+        <li> {{rank.category}}= {{rank.points}} points </li>
+         {%endfor%}
+      </ul>
+    </li>
+  {%endfor %}
+  </ul>
+  <h3> Team Point Ranking <small>(Rename this)</small> </h3>
+  <ul>
+  {% for ranking in team.teampointranking_set.all %}
+  <li> {{ranking.category}} : {{ranking.points}} </li>
+  {%endfor%}
+  </ul>
+  <br><br><br>
+  {% for player in team_players %}
+  {{player.name}} <a class="btn btn-danger" href="/remove/{{player.id}}"> Cut this player </a>
+  <br>
+  {%endfor%}
+
+  <br><br><br>
+    <a class="btn btn-success"  href="/emailers/"> Add other  emailers.</a>
+
+{% endblock %}

@@ -1,6 +1,8 @@
 from django.db import models
 # from autoslug import AutoSlugField
 
+from django.contrib.auth.models import User
+
 class Emailer(models.Model):
 	name = models.CharField(max_length=200)
 	netId = models.CharField(max_length=200)
@@ -33,6 +35,8 @@ class Player(models.Model):
 	emailer = models.ForeignKey(Emailer)
 	points = models.IntegerField()
 	def __str__(self): return "%s" % self.team
+        def name(self):
+            return self.emailer.name
 
 class Category(models.Model):
 	name = models.CharField(max_length=200)
