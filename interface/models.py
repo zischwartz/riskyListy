@@ -7,6 +7,7 @@ class Emailer(models.Model):
 	name = models.CharField(max_length=200)
 	netId = models.CharField(max_length=200)
 	image = models.CharField(max_length=200)
+	user = models.ForeignKey(User, null=True)
         # slug = AutoSlugField(populate_from='name')
 	def __str__(self):
 		return self.name
@@ -53,17 +54,24 @@ class Category(models.Model):
 	description = models.TextField()
 	def __str__(self): return self.name
 
-class EmailerPointRanking(models.Model):
+class EmailerPoints(models.Model):
 	emailer = models.ForeignKey(Emailer)
 	category = models.ForeignKey(Category)
-	type = models.CharField(max_length=200)
 	points = models.IntegerField()
-	def __str__(self): return "%s, %s, %s" % (self.emailer, self.category, self.type)
+	total = models.BooleanField()
+	def __str__(self): return "[%s] %s: %s" % (self.category, self.emailer, self.points)
 
-class TeamPointRanking(models.Model):
+class TeamPoints(models.Model):
 	team = models.ForeignKey(Team)
 	category = models.ForeignKey(Category)
-	type = models.CharField(max_length=200)
 	points = models.IntegerField()
-	def __str__(self): return "%s, %s, %s" % (self.team, self.category, self.type)
+	total = models.BooleanField()
+	def __str__(self): return "[%s] %s: %s" % (self.category, self.team, self.points)
+
+class TeamScore(models.Model):
+	team = models.ForeignKey(Team)
+	category = models.ForeignKey(Category)
+	score = models.IntegerField()
+	total = models.BooleanField()
+	def __str__(self): return "[%s] %s: %s" % (self.category, self.team, self.score)
 
