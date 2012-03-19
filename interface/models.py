@@ -38,6 +38,15 @@ class Player(models.Model):
         def name(self):
             return self.emailer.name
 
+class PlayerTransaction(models.Model):
+	timestamp = models.DateTimeField()
+	team = models.ForeignKey(Team)
+	emailer = models.ForeignKey(Emailer)
+	points = models.IntegerField()
+	def __str__(self): return "%s set %s to %d at %s" % (self.team.name, self.emailer.name, self.points, self.timestamp)
+        def name(self):
+            return self.emailer.name
+
 class Category(models.Model):
 	name = models.CharField(max_length=200)
 	total = models.BooleanField()
