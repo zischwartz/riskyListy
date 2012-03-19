@@ -16,7 +16,7 @@ class EmailAddress(models.Model):
 	emailer = models.ForeignKey(Emailer)
 	emailAddress = models.CharField(max_length=200)
 	def __str__(self):
-		return "%s: %s" % (self.emailer, self.emailAddress)
+		return "%s: %s" % (self.emailer.name, self.emailAddress)
 
 class User(models.Model):
 	name = models.CharField(max_length=200)
