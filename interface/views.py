@@ -28,7 +28,7 @@ def getTeam(request, id):
 
 def editTeam(request):
     if request.user.is_authenticated():
-        team = get_object_or_404(Team, manager=request.user)
+        team = get_object_or_404(Team, user=request.user)
         team_players = get_list_or_404(Player, team=team )
         return render_to_response("editTeam.html", locals() , context_instance=RequestContext(request))
     else:
@@ -36,7 +36,7 @@ def editTeam(request):
 
 def addPlayer(request, id):
     if request.user.is_authenticated():
-        team = get_object_or_404(Team, manager=request.user)
+        team = get_object_or_404(Team, user=request.user)
         emailer_to_add = get_object_or_404(Emailer, id=id)
         new_player = Player.objects.create(team=team, player=emailer_to_add, points= 0) # Points should be 0 when they're first added no matter what, right?
         return HttpResponseRedirect('/edit')
@@ -46,7 +46,7 @@ def addPlayer(request, id):
 
 def removePlayer(request, id):
     if request.user.is_authenticated():
-        team = get_object_or_404(Team, manager=request.user)
+        team = get_object_or_404(Team, user=request.user)
         team_players = get_list_or_404(Player, team=team )
         player_to_remove = get_object_or_404(Player, id=id)
         if player_to_remove in team_players:
