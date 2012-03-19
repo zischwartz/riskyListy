@@ -69,11 +69,10 @@ for team in teams:
 			roster[transactions[tidx]["emailer_id"]] = transactions[tidx]["points"]
 			tidx = tidx+1
 
-		emailer_id = email_to_id_dict[email["awardTo"]]
 		category = email["category"]
 
-		if roster.has_key(emailer_id):
-			points = roster[emailer_id] * email["points"]
+		if roster.has_key(email["awardTo"]):
+			points = roster[email["awardTo"]] * email["points"]
 			if team["points"].has_key(category):
 				team["points"][category] = team["points"][category] + points
 			else:
@@ -132,7 +131,4 @@ for team in s:
 
 conn.commit()
 c.close()
-
-### now find the emailer points ###
-
 
