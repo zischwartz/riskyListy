@@ -47,6 +47,16 @@ admin.site.register(models.Player, PlayerAdmin)
 
 
 
+class PlayerTransactionAdmin(admin.ModelAdmin):
+	list_display = ("emailer", "team", "timestamp", "points")
+	list_filter = ("team",)
+	ordering = ("-timestamp",)
+	search = ("team", "emailer")
+
+admin.site.register(models.PlayerTransaction, PlayerTransactionAdmin)
+
+
+
 class CategoryAdmin(admin.ModelAdmin):
 	list_display = ("name", "total")
 
