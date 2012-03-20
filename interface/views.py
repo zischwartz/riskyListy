@@ -52,6 +52,7 @@ def addPlayer(request, id):
             headline= "No Clones"
             message="You can't have an emailer on your team twice. That shit would be cray."
             return render_to_response("error.html",locals() , context_instance=RequestContext(request))
+        # if emailer_to_add
 
         new_transaction = PlayerTransaction.objects.create(timestamp= datetime.now(), team=team, emailer = emailer_to_add, points=1 ) # points should be what ??! 
         new_player = Player.objects.create(team=team, emailer=emailer_to_add, points= 1) # Points should be 0 when they're first added no matter what, right?
