@@ -16,10 +16,4 @@
     </li>
   {%endfor %}
   </ul>
-  <h3> Team Point Ranking <small>(Rename this)</small> </h3>
-  <ul>
-  {% for ranking in object.teampointranking_set.all %}
-  <li> {{ranking.category}} : {{ranking.points}} </li>
-  {%endfor%}
-  </ul>
 {% endblock %}

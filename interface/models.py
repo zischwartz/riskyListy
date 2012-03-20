@@ -30,6 +30,10 @@ class Team(models.Model):
         # slug = AutoSlugField(populate_from='name')
         def __str__(self):
 		return "%s: %s" % (self.user, self.name)
+        def getTotalScore(self):
+            for score in  self.teamscore_set.all():
+                if score.total == True:
+                    return score.score
 
 class Player(models.Model):
 	team = models.ForeignKey(Team)
@@ -43,7 +47,7 @@ class PlayerTransaction(models.Model):
 	timestamp = models.DateTimeField()
 	team = models.ForeignKey(Team)
 	emailer = models.ForeignKey(Emailer)
-	points = models.IntegerField()
+	points = models.IntegerField() # allocation, 0 is remove, 1 is one of them, 2 is two, etc
 	def __str__(self): return "%s set %s to %d at %s" % (self.team.name, self.emailer.name, self.points, self.timestamp)
         def name(self):
             return self.emailer.name

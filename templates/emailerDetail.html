@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {%block content %}
   <h1> {{object}} </h1>
+  <br>
+  <h3> Emailer Stats Since March 1 </h3> 
+  {% for epoints in object.emailerpoints_set.all%}
+ 
+  <li> {{epoints.category}}: {{epoints.points}} <i> points</i></li> 
   
-
+  {%endfor %}
+  
+  <br>
   <a class="btn btn-primary"  href="/add/{{object.id}}"> Recruit this Emailer</a> to play for your team.
 {%endblock%}

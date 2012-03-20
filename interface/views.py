@@ -37,11 +37,12 @@ def editTeam(request):
         return HttpResponse('error yo')
 
 def addPlayer(request, id):
+    # check if they're already on your team, so more points get added, two lias! TODO
     if request.user.is_authenticated():
         team = get_object_or_404(Team, user=request.user)
         emailer_to_add = get_object_or_404(Emailer, id=id)
         new_transaction = PlayerTransaction.objects.create(timestamp= datetime.now(), team=team, emailer = emailer_to_add, points=1 ) # points should be what ??! 
-        new_player = Player.objects.create(team=team, emailer=emailer_to_add, points= 0) # Points should be 0 when they're first added no matter what, right?
+        new_player = Player.objects.create(team=team, emailer=emailer_to_add, points= 1) # Points should be 0 when they're first added no matter what, right?
         return HttpResponseRedirect('/edit')
     else:
         return HttpResponse('error yo')
