@@ -127,7 +127,7 @@ for team in s:
 		c.execute("insert into interface_teamscore (team_id, category_id, score, total) values (?, ?, ?, ?)", (team["id"], category_id, team["score"][category_id], 0))
 
 	c.execute("insert into interface_teampoints (team_id, category_id, points, total) values (?, ?, ?, ?)", (team["id"], category_total_id, team["totalPoints"], 1))
-	c.execute("insert into interface_teamscore (team_id, category_id, score, total) values (?, ?, ?, ?)", (team["id"], category_id, team["totalScore"], 1))
+	c.execute("insert into interface_teamscore (team_id, category_id, score, total) values (?, ?, ?, ?)", (team["id"], category_total_id, team["totalScore"], 1))
 
 conn.commit()
 c.close()
