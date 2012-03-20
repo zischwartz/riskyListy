@@ -1,7 +1,12 @@
 from django.db import models
 # from autoslug import AutoSlugField
 
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+
+from django.dispatch import dispatcher
+
+
 
 class Emailer(models.Model):
 	name = models.CharField(max_length=200)
@@ -17,12 +22,12 @@ class EmailAddress(models.Model):
 	emailAddress = models.CharField(max_length=200)
 	def __str__(self):
 		return "%s: %s" % (self.emailer.name, self.emailAddress)
-
-class User(models.Model):
-	name = models.CharField(max_length=200)
-	email = models.CharField(max_length=200)
-	image = models.CharField(max_length=200)
-	def __str__(self): return self.name
+ 
+# class User(models.Model):
+# 	name = models.CharField(max_length=200)
+# 	email = models.CharField(max_length=200)
+# 	image = models.CharField(max_length=200)
+# 	def __str__(self): return self.name
 
 class Team(models.Model):
 	name = models.CharField(max_length=200)
@@ -78,4 +83,15 @@ class TeamScore(models.Model):
 	score = models.IntegerField()
 	total = models.BooleanField()
 	def __str__(self): return "[%s] %s: %s" % (self.category, self.team, self.score)
+
+
+
+def createNewTeam(sender, created, instance=None, **kwargs):
+    if instance is None:
+        return
+    if created == True:
+        name = instance.username + "'s Team"
+        new_team= Team.objects.get_or_create(name =name, user=instance)
+
+post_save.connect(createNewTeam, sender=User)
 
