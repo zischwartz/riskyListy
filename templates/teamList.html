@@ -2,11 +2,27 @@
 {%block content %}
   <h1> Your Rival Teams </h1>
   <table class="table table-striped">
-    <thead><th>Team</th><th> Score <th></thead>
+    <thead>
+      <th>Team</th>
+      <th> Gifs </th>
+      <th> Free Food </th>
+      <th> Convo Starter </th>
+      <th> Praise Creators </th>
+      <th> Thankyou</th>
+      <th class="strong"> Total Score</th>
+
+    </thead>
   {% for team in object_list %}
   <tr>
     <td><a href="/team/{{team.id}}">{{team.name}}</a></td>
-    <td> {{team.getTotalScore}}<td>
+    {# <td> {{team.getTotalScore}}<td> #}
+    {% for tscore in team.teamscore_set.all %}
+     {% if forloop.last %}
+      <td class="strong"> {{tscore.score}}</td>
+     {% else%}
+      <td> {{tscore.score}}</td>
+     {% endif%}
+    {% endfor%}
   </tr>
   {%endfor%}
   </table>
