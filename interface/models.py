@@ -59,7 +59,7 @@ class EmailerPoints(models.Model):
 	category = models.ForeignKey(Category)
 	points = models.IntegerField()
 	total = models.BooleanField()
-	def __str__(self): return "[%s] %s: %s" % (self.category, self.emailer, self.points)
+	def __str__(self): return "[%s] %s: %s" % (self.category, self.emailer.name, self.points, self.emailer.id)
 
 class TeamPoints(models.Model):
 	team = models.ForeignKey(Team)
