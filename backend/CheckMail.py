@@ -102,10 +102,8 @@ for mbFile in mbFiles:
 	mb = mailbox.UnixMailbox(file(mbFile, "r"), email.message_from_file)
 	mbs.append(mb)
 
-#start = datetime.strptime("Thu, 1 Mar 2012 00:00:00", "%a, %d %b %Y %H:%M:%S")
-#end = datetime.strptime("Thu, 1 Mar 2012 23:59:59", "%a, %d %b %Y %H:%M:%S")
+#start = datetime.strptime("Tues, 20 Mar 2012 15:00:00", "%a, %d %b %Y %H:%M:%S")
 #starts = int(start.strftime("%s"))
-#ends = int(end.strftime("%s"))
 
 ### database ###
 

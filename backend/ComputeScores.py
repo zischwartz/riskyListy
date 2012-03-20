@@ -1,7 +1,5 @@
 import re
 import yaml
-from datetime import timedelta, datetime
-import time
 import sys
 import sqlite3
 
@@ -12,7 +10,7 @@ conn = sqlite3.connect(config["sqlite_db"])
 ### fetch teams ###
 
 c = conn.cursor()
-c.execute("select t.id, t.name, u.name from interface_team t inner join interface_user u on (t.user_id = u.id)")
+c.execute("select t.id, t.name, u.username from interface_team t inner join auth_user u on (t.user_id = u.id)")
 teams = [{"id": row[0], "name": row[1], "user": row[2]} for row in c]
 c.close()
 
@@ -43,6 +41,8 @@ c.close()
 
 ### calculate points for each team ###
 
+startDate = "2012-03-20 15:00:00"
+
 for team in teams:
 	### fetch team transactions ###
 
@@ -60,11 +60,15 @@ for team in teams:
 
 	tidx = 0
 
+	print team["name"]
 	print transactions
 
 	### go through emails and construct the score ###
 
 	for email in emails:
+		if startDate > email["timestamp"]:
+			continue
+
 		while tidx < len(transactions) and transactions[tidx]["timestamp"] >= email["timestamp"]:
 			roster[transactions[tidx]["emailer_id"]] = transactions[tidx]["points"]
 			tidx = tidx+1
