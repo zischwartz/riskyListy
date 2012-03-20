@@ -31,7 +31,7 @@ for mbFile in mbFiles:
 c = conn.cursor()
 checked = {}
 
-getNameProg = re.compile("^(.*)\\s+<\\S+@\\S+>")
+getNameProg = re.compile("^(.*)\\s+<(\\S+@\\S+)>")
 
 needToAddNames = []
 
@@ -76,11 +76,11 @@ for mb in mbs:
 			break
 
 		if not res:
-			name = getNameProg.search(msg["from"])
+			nameRes = getNameProg.search(msg["from"])
 			add = True 
 
-			if name:
-				name = name.group(1).replace("\"", "")
+			if nameRes:
+				name = nameRes.group(1).replace("\"", "")
 				nameIsAlpha = name.replace(" ", "").replace("-", "").replace("'", "").replace(".", "").isalpha()
 				if nameIsAlpha:
 					print "adding", msg["from"], "possible name", name
@@ -91,7 +91,7 @@ for mb in mbs:
 						break
 
 					if emailer_id >= 0:
-						c.execute("insert into interface_emailaddress (emailer_id, emailAddress) values (?, ?)", (emailer_id, msg["from"]))
+						c.execute("insert into interface_emailaddress (emailer_id, emailAddress, realEmail) values (?, ?, ?)", (emailer_id, msg["from"], nameRes.group(2)))
 					else:
 						c.execute("insert into interface_emailer (name, netId, image) values (?, ?, ?)", (name, "abc123", "default.jpg"))
 						c.execute("select id from interface_emailer where name = ?", (name,))
@@ -99,13 +99,13 @@ for mb in mbs:
 							emailer_id = row[0]
 							break
 
-						c.execute("insert into interface_emailaddress (emailer_id, emailAddress) values (?, ?)", (emailer_id, msg["from"],))
+						c.execute("insert into interface_emailaddress (emailer_id, emailAddress, realEmail) values (?, ?, ?)", (emailer_id, msg["from"], nameRes.group(2)))
 					add = False
 
 			if add:
 				needToAddNames.append(msg["from"])
 				print "adding", msg["from"]
-				c.execute("insert into interface_emailaddress (emailer_id, emailAddress) values (-1, ?)", (msg["from"],))
+				c.execute("insert into interface_emailaddress (emailer_id, emailAddress, realEmail) values (-1, ?, ?)", (msg["from"], ""))
 
 conn.commit()
 c.close()

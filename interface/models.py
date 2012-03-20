@@ -12,7 +12,7 @@ class Emailer(models.Model):
 	name = models.CharField(max_length=200)
 	netId = models.CharField(max_length=200)
 	image = models.CharField(max_length=200)
-	user = models.ForeignKey(User, null=True)
+	user = models.ForeignKey(User, null=True, blank=True)
         # slug = AutoSlugField(populate_from='name')
 	def __str__(self):
 		return self.name
@@ -71,7 +71,7 @@ class EmailerPoints(models.Model):
 	category = models.ForeignKey(Category)
 	points = models.IntegerField()
 	total = models.BooleanField()
-	def __str__(self): return "[%s] %s: %s" % (self.category, self.emailer.name, self.points, self.emailer.id)
+	def __str__(self): return "[%s] %s: %s" % (self.category, self.emailer, self.points)
 
 class TeamPoints(models.Model):
 	team = models.ForeignKey(Team)
