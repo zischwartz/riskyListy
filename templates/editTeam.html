@@ -27,12 +27,15 @@
   <h3> Total Score </h3>
   <ul>
     {% for tscore in team.teamscore_set.all %}
-    <li>
-    {{tscore.category}}: {{tscore.score}} 
-    </li>
+    {% if forloop.last %}
+    <li class="strong total"> Grand {{tscore.category}}: {{tscore.score}} </li>
+    {% else %}
+    <li> {{tscore.category}}: {{tscore.score}} </li>
+    {% endif %}
     {%endfor %}
     </ul>
   <br><br><br>
+
   <h3> Kick Players Off Your Team</h3>
   {% for player in team_players %}
   <a href="/emailer/{{player.emailer.id}}">{{player.name}} </a>  <a class="btn btn-small  btn-danger" href="/remove/{{player.id}}"> Cut this player </a>
