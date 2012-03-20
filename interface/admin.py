@@ -2,9 +2,9 @@ import models
 from django.contrib import admin
 
 class EmailerAdmin(admin.ModelAdmin):
-	list_display = ("name",)
-	list_display_links = ("name",)
-	ordering = ("name",)
+	list_display = ("name", "netId", "user")
+	list_display_links = ("name", "netId", "user")
+	ordering = ("name", "netId", "user")
 
 admin.site.register(models.Emailer, EmailerAdmin)
 
