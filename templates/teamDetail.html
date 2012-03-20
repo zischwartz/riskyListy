@@ -6,14 +6,35 @@
   <br>
   <h3> Players On This  Team </h3>
   <ul>
+
   {% for player in object.player_set.all %}
-    <li> {{player.name}} : {{player.points}} points
-      <ul>
-        {% for  rank in  player.player.emailerpointranking_set.all %} 
-        <li> {{rank.category}}= {{rank.points}} points </li>
-         {%endfor%}
-      </ul>
-    </li>
+    <li> {{player.name}} </li>
   {%endfor %}
   </ul>
+
+
+  <h3> Team Points <small> By Category</small> </h3>
+  <ul>
+  {% for ranking in object.teampoints_set.all %}
+    <li> {{ranking.category}} : {{ranking.points}} </li>
+  {%endfor%}
+  </ul>
+  <h3> Total Score </h3>
+  <ul>
+    {% for tscore in object.teamscore_set.all %}
+    {% if forloop.last %}
+    <li class="strong total"> Grand {{tscore.category}}: {{tscore.score}} </li>
+    {% else %}
+    <li> {{tscore.category}}: {{tscore.score}} </li>
+    {% endif %}
+    {%endfor %}
+    </ul>
+  <br><br><br>
+
+
+
+
+
+
+
 {% endblock %}

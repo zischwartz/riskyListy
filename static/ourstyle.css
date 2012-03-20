@@ -20,3 +20,20 @@
 {
   color: black !important;
 }
+
+
+.strong
+{
+  font-weight: bold;
+}
+
+.total
+{
+  padding: 10px;
+  background-color: #efefef;
+  color: black;
+  font-size: 120%;
+  text-align: center;
+  list-style: none;
+  border: 1px solid gray;
+}

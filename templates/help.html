@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1> Rules, Help, &amp; FAQ </h1>
+
+<h2>FAQ</h2>
+
+<h3>What is a fantasy
+
+<h3>What is RiskyListy?</h3>
+
+<p>RiskyListy is a <a href="http://en.wikipedia.org/wiki/Fantasy_sport">fantasy sports</a> inspired game for the ITP mailing list. You, as a team manager in the game, own players who are your fellow classmates and emailers on the list. The players earn you points for categories defined in RiskyListy.</p>
+
+<p>For example, if your player sends an email with the words "Thank you" in the subject line and is not a reply to another email, then your player will earn you 1 point for the Thank You category. The categories are described further below.</p>
+
+<h3>Fantasy sports, you say?</h3>
+
+See this nice <a href="http://entertainment.howstuffworks.com/fantasy-football1.htm">overview of fantasy football</a> for a better idea.
+
+<h3>How does points, scoring, and ranking work?</h3>
+
+<p>Each player on your team earns you <strong>points</strong> for each of the game categories (defined below). Your <strong>team points</strong> is the sum of all the points your players have earned for you in each category. There are 5 categories, so you have 5 types of team points.</p>
+
+<p>Your ranking is determined by your <strong>total score</strong>. Total score is the sum of each <strong>score</strong> per category. Your points determine your score: the person with the most points in a category gets the highest score for that category. The person with the second most points in a category gets the second highest score, etc. In particular, if there are N players and you have the most points in a category, you get a score of N. The second highest point-getter in that category gets a score of N-1, and so on.</p>
+
+<p>Teams that have 0 points for a category get a score of 0 for that category. Teams that have the same number of points for a category get the same score.</p>
+
+<p>Tiebreakers: If two teams have the same total score, then the team with the higher total points is ranked higher. If two teams also have the same total points, then they are ranked based on their first name and then last name.</p>
+
+<h3>Are points cumulative?</h3>
+
+<p>Yes, points will be gained over the length of the game and will not disappear or be compounded.</p>
+
+<h3>How many players can I have on my team at once?</h3>
+
+<p>8</p>
+
+<h3>How many times can I add and drop players?</h3>
+
+<p>As many times as you'd like.</p>
+
+<h3>When do changes to my team lineup take effect?</h3>
+
+<p>Immediately.</p>
+
+<h3>Can two or more teams own the same player?</h3>
+
+<p>Yes.</p>
+
+<h3>Can I have two or more of the same players on my team?</h3>
+
+<p>No.</p>
+
+<h3>Can I be an player on my own team?</h3>
+
+<p>No.</p>
+
+<h3>How often is the website updated?</h3>
+
+<p>Approximately every 15 minutes.</p>
+
+<h2>Categories</h2>
+
+<h3>Thank You</h3>
+
+<p>Gives a point for an email whose subject line contains either "thanks" or "thank you" (case-insensitive). Replies to or forwards of such emails do not count.</p>
+
+<h3>Free Food</h3>
+
+<p>Gives a point for an email whose subject line or body contains "free food" (case-insensitive). Replies to or forwards of such emails do not count.</p>
+
+<h3>GIFs</h3>
+
+<p>Gives a point for an email whose body contains a link to a GIF file, has a GIF file attached, or has a GIF file in the body of the email. Replies to or forwards of such emails do not count.</p>
+
+<h3>Conversation Starter</h3>
+
+<p>Awards X points to an email that receives X replies. For example, if Johnny sends an email and Jane replies to Johnny's email, then Johnny gets 1 point for the teams that have selected Johnny.</p>
+
+<h3>Praise The Creators</h3>
+
+<p>Gives a point for emails whose subject line contains the phrase "you are the best, ______" where the blank is one of Naliaka, Sheiva, Sean, Tiffany, or Zach. (Case-insensitive.) Replies or forwards do not count.</p>
+
+<h2>Help</h2>
+
+<p>If you have any questions or find any bugs, send an email or talk to one of Sean, Zach, Naliaka, Tiffany, or Sheiva.</p>
+
+{% endblock %}
