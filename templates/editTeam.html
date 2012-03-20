@@ -5,6 +5,8 @@
   <br>
   <h3> Players On This Team </h3>
   <ul>
+
+    {%if team.player_set.all|length > 0 %}
   {% for player in team.player_set.all %}
   <li> <a href="/emailer/{{player.emailer.id}}">{{player.name}} </a>  
       <ul>
@@ -33,11 +35,17 @@
   <br><br><br>
   <h3> Kick Players Off Your Team</h3>
   {% for player in team_players %}
-  <a href="/emailer/{{player.emailer.id}}">{{player.name}} </a>  <a class="btn btn-danger" href="/remove/{{player.id}}"> Cut this player </a>
+  <a href="/emailer/{{player.emailer.id}}">{{player.name}} </a>  <a class="btn btn-small  btn-danger" href="/remove/{{player.id}}"> Cut this player </a>
   <br>
   <br>
   {%endfor%}
 
   <br>
-    <a class="btn btn-success"  href="/emailers/"> Add other  emailers.</a>
+    <a class="btn btn-success btn-large"  href="/emailers/"> Recruit other  emailers.</a>
+    {%else%} {# end of player length #}
+  <p> None. Why don't you add some</p>
+    <a class="btn btn-success btn-large"  href="/emailers/"> Add  players.</a>
+    {%endif%}
+    <br><br>
+    <br><br>
 {% endblock %}

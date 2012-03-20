@@ -17,15 +17,15 @@ class EmailAddressAdmin(admin.ModelAdmin):
 
 admin.site.register(models.EmailAddress, EmailAddressAdmin)
 
-
-
-class UserAdmin(admin.ModelAdmin):
-	list_display = ("name",)
-	ordering = ("name",)
-	search_fields = ("name",)
-
-admin.site.register(models.User, UserAdmin)
-
+# 
+# 
+# class UserAdmin(admin.ModelAdmin):
+# 	list_display = ("name",)
+# 	ordering = ("name",)
+# 	search_fields = ("name",)
+# 
+# admin.site.register(models.User, UserAdmin)
+# 
 
 
 class TeamAdmin(admin.ModelAdmin):

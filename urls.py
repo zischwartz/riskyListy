@@ -27,7 +27,8 @@ urlpatterns = patterns('',
     url(r'^remove/?(?P<id>[a-z\d]+)/$', 'interface.views.removePlayer'),
     url(r'^add/?(?P<id>[a-z\d]+)/$', 'interface.views.addPlayer'),
 
-    (r'^accounts/profile/', 'interface.views.home'),
+    (r'^accounts/profile/.*', 'interface.views.home'),
+    (r'^users/.*', 'interface.views.home'),
     (r'^accounts/', include('registration.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
