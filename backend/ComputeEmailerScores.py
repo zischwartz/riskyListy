@@ -46,8 +46,8 @@ for emailer in emailers:
 
 s = sorted(emailers, key=lambda emailer: emailer["name"])
 
-for ss in s:
-	print ss
+#for ss in s:
+#	print ss
 
 ### put them in the database ###
 

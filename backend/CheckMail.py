@@ -27,7 +27,7 @@ def insertEntry(timestamp, mailfrom, subject, category, points, awardTo):
 	for res in c:
 		awardToId = res[0]
 	if awardToId:
-		c.execute("insert into email_points values (?, ?, ?, ?, ?, ?)", (timestamp, mailfrom, subject, category, points, awardToId))
+		c.execute("insert into email_points (timestamp, mailfrom, subject, category, points, awardto) values (?, ?, ?, ?, ?, ?)", (timestamp, mailfrom, subject, category, points, awardToId))
 		conn.commit()
 	else:
 		print "### WARNING: Could not find entry for email address %s ###" % awardTo
@@ -116,15 +116,17 @@ c.execute("drop index if exists email_points_master")
 
 c.execute("""
     create table if not exists email_points (
+        id int primary key,
         timestamp datetime not null, 
         mailfrom char(128) not null,
         subject char(128) not null,
         category int not null,
         points int not null,
-        awardTo int not null
+        awardTo int not null references "interface_emailer" ("id")
     )
 """)
 
+c.execute("create index if not exists email_points_awardTo on email_points (awardTo)")
 c.execute("create unique index if not exists email_points_master on email_points (timestamp, mailfrom, subject, category)")
 
 c.execute("drop table if exists conversation")
