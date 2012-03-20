@@ -23,6 +23,8 @@ urlpatterns = patterns('',
     url(r'^teams/$', teamList, name='teamList'),
     url(r'^emailer/(?P<pk>[a-z\d]+)/$', emailerDetail, name='emailerDetail'),
 
+    url(r'^help/$', direct_to_template, {'template': 'help.html'}),
+
     url(r'^edit/?$', 'interface.views.editTeam', name='editTeam'),
     url(r'^remove/?(?P<id>[a-z\d]+)/$', 'interface.views.removePlayer'),
     url(r'^add/?(?P<id>[a-z\d]+)/$', 'interface.views.addPlayer'),
