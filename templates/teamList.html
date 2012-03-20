@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {%block content %}
   <h1> Your Rival Teams </h1>
-  {% for emailer in object_list %}
-  <p>
-  <a href="/team/{{emailer.id}}">{{emailer}}</a>
-  </p>
+  <table class="table table-striped">
+    <thead><th>Team</th><th> Score <th></thead>
+  {% for team in object_list %}
+  <tr>
+    <td><a href="/team/{{team.id}}">{{team.name}}</a></td>
+    <td> {{team.getTotalScore}}<td>
+  </tr>
   {%endfor%}
-  
+  </table>
 
 {%endblock%}

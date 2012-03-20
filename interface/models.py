@@ -30,6 +30,10 @@ class Team(models.Model):
         # slug = AutoSlugField(populate_from='name')
         def __str__(self):
 		return "%s: %s" % (self.user, self.name)
+        def getTotalScore(self):
+            for score in  self.teamscore_set.all():
+                if score.total == True:
+                    return score.score
 
 class Player(models.Model):
 	team = models.ForeignKey(Team)
