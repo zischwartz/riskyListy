@@ -84,3 +84,8 @@ def removePlayer(request, id):
     else:
         return HttpResponse('error yo')
 
+def teamList(request):
+    object_list = sorted(Team.objects.all(), key= lambda a: a.getTotalScore())
+    # sorted(Author.objects.all(), key=lambda a: a.full_name)
+
+    return render_to_response("teamList.html",locals() , context_instance=RequestContext(request))

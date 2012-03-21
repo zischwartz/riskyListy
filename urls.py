@@ -12,7 +12,7 @@ teamDetail = DetailView.as_view(model=Team, template_name= "teamDetail.html")
 emailerDetail = DetailView.as_view(model=Emailer, template_name= "emailerDetail.html")
 
 emailerList = ListView.as_view(model=Emailer, template_name= "emailerList.html")
-teamList = ListView.as_view(model=Team, template_name= "teamList.html")
+# teamList = ListView.as_view(model=Team, template_name= "teamList.html")
 
 
 urlpatterns = patterns('',
@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^$', 'interface.views.home', name='home'),
     url(r'^team/(?P<pk>[a-z\d]+)/$', teamDetail, name='teamDetail'),
     url(r'^emailers/$', emailerList, name='emailerList'),
-    url(r'^teams/$', teamList, name='teamList'),
+    url(r'^teams/$', 'interface.views.teamList', name='teamList'),
     url(r'^emailer/(?P<pk>[a-z\d]+)/$', emailerDetail, name='emailerDetail'),
 
     url(r'^help/$', direct_to_template, {'template': 'help.html'}),
