@@ -175,6 +175,9 @@ def register(request, backend, success_url=None, form_class=None,
     argument.
     
     """
+    return redirect(disallowed_url)
+    # janky as hell but it'll work
+
     backend = get_backend(backend)
     if not backend.registration_allowed(request):
         return redirect(disallowed_url)
